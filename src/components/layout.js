@@ -74,6 +74,7 @@ const Layout = ({ location, title, children }) => {
   return (
     <>
       <header>{header}</header>
+
       <div
         style={{
           marginLeft: `auto`,
@@ -83,12 +84,32 @@ const Layout = ({ location, title, children }) => {
         }}
       >
         <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
       </div>
+
+      <footer id="footer">
+        <div className="container">
+          <div className="row">
+            <div className="col-sm-6">
+              © {new Date().getFullYear()}, Built with
+              {` `}
+              <a href="https://www.gatsbyjs.org">Gatsby</a>
+            </div>
+            <div className="col-sm-6 text-right">
+              <ul>
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+                <li>
+                  <Link to="/">Tag</Link>
+                </li>
+                <li>
+                  <Link to="/">Author</Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
     </>
   )
 }

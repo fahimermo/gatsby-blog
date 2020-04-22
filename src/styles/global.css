@@ -90,10 +90,58 @@
 
 /*
 *****************************************************
+** Footer
+*/
+#footer {
+  color: white;
+  background-color: #343a40;
+  padding: 20px 0;
+}
+
+#footer ul {
+  display: inline-block;
+  margin: 0;
+}
+
+#footer ul li {
+  display: inline-block;
+  list-style-type: none;
+  padding: 0 10px;
+}
+
+/*
+*****************************************************
+** Sidebar
+*/
+#sidebar {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  background-color: black;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 100px 10px;
+}
+
+/*
+*****************************************************
 ** Responsive - Mobile
 */
+
+/* main body */
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
   main {
     margin-top: 50px;
+  }
+}
+
+/* sidebar 767px */
+@media only screen and (max-width: 991px) {
+  #sidebar {
+    position: unset;
+    height: auto;
   }
 }
