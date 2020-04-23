@@ -1,4 +1,9 @@
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/69e31aec-97fe-4f40-a9da-297f652f3ce4/deploy-status)](https://app.netlify.com/sites/gatsby-blog-stage2/deploys)
+
+https://gatsby-blog-stage2.netlify.app/
+
 <p align="center">
   <a href="https://www.gatsbyjs.org">
     <img alt="Gatsby" src="https://www.gatsbyjs.org/monogram.svg" width="60" />
@@ -93,6 +98,8 @@ Looking for more guidance? Full documentation for Gatsby lives [on the website](
 ## 💫 Deploy
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-blog)
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/69e31aec-97fe-4f40-a9da-297f652f3ce4/deploy-status)](https://app.netlify.com/sites/gatsby-blog-stage2/deploys)
 
 [![Deploy with ZEIT Now](https://zeit.co/button)](https://zeit.co/import/project?template=https://github.com/gatsbyjs/gatsby-starter-blog)
 
