@@ -65,7 +65,7 @@ module.exports = {
         ],
       },
     },
-    {
+    /*{
       resolve: `gatsby-source-vimeo`,
       options: {
         clientID: "INSERT_YOUR_CLIENT_IDENTIFIER",
@@ -79,7 +79,7 @@ module.exports = {
           return video
         },
       },
-    },
+    },*/
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
