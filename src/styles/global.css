@@ -124,6 +124,8 @@
   flex-direction: column;
 
   padding: 100px 10px;
+
+  z-index: -1;
 }
 
 /*

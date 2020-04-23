@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "gatsby"
 
-import { rhythm, scale } from "../utils/typography"
+import { rhythm /*, scale*/ } from "../utils/typography"
 
 import { slide as Menu } from "react-burger-menu"
 
@@ -13,22 +13,23 @@ import {
   Nav,
   NavItem,
   NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
+  // UncontrolledDropdown,
+  // DropdownToggle,
+  // DropdownMenu,
+  // DropdownItem,
   NavbarText,
   Container,
 } from "reactstrap"
 
 const Layout = ({ location, title, children }) => {
-  const rootPath = `${__PATH_PREFIX__}/`
+  //const rootPath = `${__PATH_PREFIX__}/`
   //let header
 
   const [isOpen, setIsOpen] = useState(false)
   const toggle = () => setIsOpen(!isOpen)
 
   const [header, setHeader] = useState("")
+
   useEffect(() => {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
     if (isMobile) {
@@ -53,7 +54,7 @@ const Layout = ({ location, title, children }) => {
           <Container>
             <Navbar color="dark" dark expand="md">
               <NavbarBrand href="/">Logo</NavbarBrand>
-              <NavbarToggler onClick={toggle} />
+              <NavbarToggler onClick={() => toggle} />
               <Collapse isOpen={isOpen} navbar>
                 <Nav className="mr-auto" navbar>
                   <NavItem>
@@ -73,7 +74,7 @@ const Layout = ({ location, title, children }) => {
         </div>
       )
     }
-  }, [])
+  }, [isOpen])
 
   return (
     <>
