@@ -130,6 +130,26 @@
 
 /*
 *****************************************************
+** Index Page
+*/
+
+.tag ul {
+  display: inline-block;
+}
+
+.tag ul li {
+  display: inline-block;
+  list-style-type: none;
+  margin: 0 10px;
+}
+
+.tag .tag__default {
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+/*
+*****************************************************
 ** Responsive - Mobile
 */
 

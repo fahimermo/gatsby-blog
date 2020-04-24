@@ -6,6 +6,8 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm } from "../utils/typography"
 
+import { kebabCase } from "lodash"
+
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
   const posts = data.allMarkdownRemark.edges
@@ -33,10 +35,25 @@ const BlogIndex = ({ data, location }) => {
             <section>
               <p
                 dangerouslySetInnerHTML={{
-                  __html: node.frontmatter.description || node.excerpt,
+                  __html: node.excerpt || "",
                 }}
               />
             </section>
+            <div className="category"></div>
+            <div className="tag">
+              tags: &nbsp;
+              {node.frontmatter.tag.length ? (
+                <ul className="taglist">
+                  {node.frontmatter.tag.map(tagItem => (
+                    <li key={tagItem + `tag`}>
+                      <Link to={`/tags/${kebabCase(tagItem)}/`}>{tagItem}</Link>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <div className="tag__default">dentalimplants</div>
+              )}
+            </div>
           </article>
         )
       })}
@@ -63,7 +80,7 @@ export const pageQuery = graphql`
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
             title
-            description
+            tag
           }
         }
       }

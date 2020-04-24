@@ -40,6 +40,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           </p>
         </header>
         <section dangerouslySetInnerHTML={{ __html: post.html }} />
+
         <hr
           style={{
             marginBottom: rhythm(1),
@@ -97,7 +98,7 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
-        description
+        tag
       }
     }
   }
