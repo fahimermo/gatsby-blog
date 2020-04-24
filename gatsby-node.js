@@ -8,6 +8,8 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const blogPost = path.resolve(`./src/templates/blog-post.js`)
   const tagTemplate = path.resolve("src/templates/tags.js")
+  const authorTemplate = path.resolve("src/templates/authors.js")
+  const categoryTemplate = path.resolve("src/templates/categories.js")
 
   const result = await graphql(
     `
@@ -24,6 +26,8 @@ exports.createPages = async ({ graphql, actions }) => {
               frontmatter {
                 title
                 tag
+                author
+                category
               }
             }
           }
@@ -72,6 +76,50 @@ exports.createPages = async ({ graphql, actions }) => {
       component: tagTemplate,
       context: {
         tag,
+      },
+    })
+  })
+
+  // Extract author data from query
+  let authors = []
+  _.each(posts, edge => {
+    if (_.get(edge, "node.frontmatter.author")) {
+      authors.push(edge.node.frontmatter.author)
+    }
+  })
+
+  // Eliminate duplicate authors
+  authors = _.uniq(authors)
+
+  // Make author pages
+  authors.forEach(author => {
+    createPage({
+      path: `/authors/${_.kebabCase(author)}/`,
+      component: authorTemplate,
+      context: {
+        author,
+      },
+    })
+  })
+
+  // Extract category data from query
+  let categories = []
+  _.each(posts, edge => {
+    if (_.get(edge, "node.frontmatter.category")) {
+      categories = categories.concat(edge.node.frontmatter.category)
+    }
+  })
+
+  // Eliminate duplicate categories
+  categories = _.uniq(categories)
+
+  // Make category pages
+  categories.forEach(category => {
+    createPage({
+      path: `/categories/${_.kebabCase(category)}/`,
+      component: categoryTemplate,
+      context: {
+        category,
       },
     })
   })

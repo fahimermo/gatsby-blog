@@ -39,7 +39,26 @@ const BlogIndex = ({ data, location }) => {
                 }}
               />
             </section>
-            <div className="category"></div>
+            <div className="category">
+              categories: &nbsp;
+              {node.frontmatter.category.length ? (
+                <ul className="categorylist">
+                  {/* {node.frontmatter.category.map(categoryItem => ( */}
+                  <li key={node.frontmatter.category[0] + `category`}>
+                    <Link
+                      to={`/categories/${kebabCase(
+                        node.frontmatter.category[0]
+                      )}/`}
+                    >
+                      {node.frontmatter.category[0]}
+                    </Link>
+                  </li>
+                  {/* ))} */}
+                </ul>
+              ) : (
+                <div className="category__default">Clinical Cases</div>
+              )}
+            </div>
             <div className="tag">
               tags: &nbsp;
               {node.frontmatter.tag.length ? (
@@ -52,6 +71,25 @@ const BlogIndex = ({ data, location }) => {
                 </ul>
               ) : (
                 <div className="tag__default">dentalimplants</div>
+              )}
+            </div>
+
+            <div className="author">
+              authors: &nbsp;
+              {node.frontmatter.author ? (
+                <ul className="authorlist">
+                  {/* {node.frontmatter.author.map(authorItem => ( */}
+                  <li key={node.frontmatter.author + `author`}>
+                    <Link
+                      to={`/authors/${kebabCase(node.frontmatter.author)}/`}
+                    >
+                      {node.frontmatter.author}
+                    </Link>
+                  </li>
+                  {/* ))} */}
+                </ul>
+              ) : (
+                <div className="author__default">osseonews</div>
               )}
             </div>
           </article>
@@ -81,6 +119,8 @@ export const pageQuery = graphql`
             date(formatString: "MMMM DD, YYYY")
             title
             tag
+            author
+            category
           }
         }
       }

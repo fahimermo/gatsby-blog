@@ -105,13 +105,13 @@ const Layout = ({ location, title, children }) => {
                   <Link to="/">Home</Link>
                 </li>
                 <li>
-                  <Link to="/">Category</Link>
+                  <Link to="/categories">Category</Link>
                 </li>
                 <li>
                   <Link to="/tags">Tag</Link>
                 </li>
                 <li>
-                  <Link to="/">Author</Link>
+                  <Link to="/authors">Author</Link>
                 </li>
               </ul>
             </div>

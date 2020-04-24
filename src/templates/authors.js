@@ -11,18 +11,18 @@ import { kebabCase } from "lodash"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-const Tags = ({ pageContext, data }) => {
+const Authors = ({ pageContext, data }) => {
   //   const siteTitle = data.site.siteMetadata.title
-  const { tag } = pageContext
+  const { author } = pageContext
   const { edges, totalCount } = data.allMarkdownRemark
-  const tagHeader = `${totalCount} post${
+  const authorHeader = `${totalCount} post${
     totalCount === 1 ? "" : "s"
-  } tagged with "${tag}"`
+  } authored with "${author}"`
 
   return (
     <Layout>
-      <SEO title={tag} />
-      <h1 className="mb-5">{tagHeader}</h1>
+      <SEO title={author} />
+      <h1 className="mb-5">{authorHeader}</h1>
       <ul>
         {edges.map(({ node }) => {
           //   const { slug } = node.fields
@@ -54,20 +54,23 @@ const Tags = ({ pageContext, data }) => {
                   }}
                 />
               </section>
-              <div className="tag">
-                tags: &nbsp;
-                {node.frontmatter.tag.length ? (
-                  <ul className="taglist">
-                    {node.frontmatter.tag.map(tagItem => (
-                      <li key={tagItem + `tag`}>
-                        <Link to={`/tags/${kebabCase(tagItem)}/`}>
-                          {tagItem}
-                        </Link>
-                      </li>
-                    ))}
+              <div className="category"></div>
+              <div className="author">
+                authors: &nbsp;
+                {node.frontmatter.author ? (
+                  <ul className="authorlist">
+                    {/* {node.frontmatter.author.map(authorItem => ( */}
+                    <li key={node.frontmatter.author + `author`}>
+                      <Link
+                        to={`/authors/${kebabCase(node.frontmatter.author)}/`}
+                      >
+                        {node.frontmatter.author}
+                      </Link>
+                    </li>
+                    {/* ))} */}
                   </ul>
                 ) : (
-                  <div className="tag__default">dentalimplants</div>
+                  <div className="author__default">dentalimplants</div>
                 )}
               </div>
               <div className="mb-3"></div>
@@ -79,14 +82,14 @@ const Tags = ({ pageContext, data }) => {
               This links to a page that does not yet exist.
               You'll come back to it!
             */}
-      {/* <Link to="/tags">All tags</Link> */}
+      {/* <Link to="/authors">All authors</Link> */}
     </Layout>
   )
 }
 
-// Tags.propTypes = {
+// Authors.propTypes = {
 //   pageContext: PropTypes.shape({
-//     tag: PropTypes.string.isRequired,
+//     author: PropTypes.string.isRequired,
 //   }),
 //   data: PropTypes.shape({
 //     allMarkdownRemark: PropTypes.shape({
@@ -107,14 +110,14 @@ const Tags = ({ pageContext, data }) => {
 //   }),
 // }
 
-export default Tags
+export default Authors
 
 export const pageQuery = graphql`
-  query($tag: String) {
+  query($author: String) {
     allMarkdownRemark(
       limit: 2000
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { tag: { in: [$tag] } } }
+      filter: { frontmatter: { author: { in: [$author] } } }
     ) {
       totalCount
       edges {
@@ -124,7 +127,7 @@ export const pageQuery = graphql`
           }
           frontmatter {
             title
-            tag
+            author
           }
         }
       }

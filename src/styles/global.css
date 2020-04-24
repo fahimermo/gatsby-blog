@@ -132,18 +132,23 @@
 *****************************************************
 ** Index Page
 */
-
-.tag ul {
+.category ul,
+.tag ul,
+.author ul {
   display: inline-block;
 }
 
-.tag ul li {
+.category ul li,
+.tag ul li,
+.author ul li {
   display: inline-block;
   list-style-type: none;
   margin: 0 10px;
 }
 
-.tag .tag__default {
+.category .category__default,
+.tag .tag__default,
+.author .author__default {
   display: inline-block;
   margin-bottom: 10px;
 }
