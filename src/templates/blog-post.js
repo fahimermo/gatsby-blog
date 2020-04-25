@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Link, graphql } from "gatsby"
 
 import Bio from "../components/bio"
@@ -8,10 +8,27 @@ import { rhythm, scale } from "../utils/typography"
 
 import Sidebar from "./../components/sidebar"
 
+import FsLightbox from "fslightbox-react"
+
 const BlogPostTemplate = ({ data, pageContext, location }) => {
   const post = data.markdownRemark
   const siteTitle = data.site.siteMetadata.title
   const { previous, next } = pageContext
+
+  const [toggler, setToggler] = useState(false)
+
+  const parseMD = () => {
+    let htmlBody = post.htmlAst
+    let parsed = htmlBody.children[htmlBody.children.length - 1].children
+
+    let imgArr = []
+    parsed.forEach(element => {
+      if (element.children) {
+        imgArr.push(element.children[1].children[3].properties.src)
+      }
+    })
+    return imgArr
+  }
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -39,6 +56,10 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
             {post.frontmatter.date}
           </p>
         </header>
+        <h1>This is lightbox</h1>
+        <img src={parseMD()[0]} onClick={() => setToggler(!toggler)} />
+        <FsLightbox toggler={toggler} sources={parseMD()} />
+
         <section dangerouslySetInnerHTML={{ __html: post.html }} />
 
         <hr
@@ -50,7 +71,6 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           <Bio />
         </footer>
       </article>
-
       <nav>
         <ul
           style={{
@@ -95,6 +115,7 @@ export const pageQuery = graphql`
       id
       excerpt(pruneLength: 160)
       html
+      htmlAst
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")

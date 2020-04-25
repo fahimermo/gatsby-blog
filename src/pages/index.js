@@ -8,6 +8,8 @@ import { rhythm } from "../utils/typography"
 
 import { kebabCase } from "lodash"
 
+import Sidebar from "./../components/sidebar"
+
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
   const posts = data.allMarkdownRemark.edges
@@ -95,6 +97,8 @@ const BlogIndex = ({ data, location }) => {
           </article>
         )
       })}
+
+      <Sidebar />
     </Layout>
   )
 }
